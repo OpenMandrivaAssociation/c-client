@@ -8,7 +8,7 @@
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
 Version:	2007a
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Apache License
 Group:		System/Servers
 URL:		http://www.washington.edu/imap/
@@ -41,7 +41,7 @@ the University of Washington. It is used mainly by php in Mandriva Linux.
 %package -n	%{libname}
 Summary:	C-client mail access routines for IMAP and POP protocols
 Group:		System/Libraries
-Provides:	c-client
+Provides:	c-client = %{version}-%{release}
 
 %description -n	%{libname}
 The c-client library is a common API for accessing mailboxes developed at
@@ -53,10 +53,10 @@ This package contains the shared c-client library.
 Summary:	Development files for the c-client library
 Group:		Development/C
 Requires:	%{libname} = %{version}
-Obsoletes:	libc-client-php-devel < 1:2007
-Obsoletes:	%{mklibname c-client-php -d 0} < 1:2007
-Obsoletes:	imap-devel < 1:2005
-Obsoletes:	libc-client-php-devel = 1:2005
+Obsoletes:	libc-client-php-devel
+Obsoletes:	%{mklibname c-client-php -d 0}
+Obsoletes:	imap-devel
+Provides:	c-client-devel = %{version}-%{release}
 
 %description -n	%{develname}
 The c-client library is a common API for accessing mailboxes developed at
@@ -87,13 +87,8 @@ install -m 0644 %{SOURCE7} src/osdep/unix/flock.c
 %build
 %serverbuild
 
-EXTRACFLAGS="$EXTRACFLAGS -I%{_includedir}/openssl"
-EXTRALDFLAGS="$EXTRALDFLAGS -L%{_libdir}"
 touch ip6
-
-################################################################################
-EXTRACFLAGS="$EXTRACFLAGS -DDISABLE_POP_PROXY=1 -DIGNORE_LOCK_EACCES_ERRORS=1"
-EXTRACFLAGS="$EXTRACFLAGS -I%{_includedir}/openssl"
+EXTRACFLAGS="$EXTRACFLAGS -DDISABLE_POP_PROXY=1 -DIGNORE_LOCK_EACCES_ERRORS=1 -I%{_includedir}/openssl"
 EXTRALDFLAGS="$EXTRALDFLAGS -L%{_libdir}"
 make RPM_OPT_FLAGS="$RPM_OPT_FLAGS -D_REENTRANT -DDIC -fPIC -fno-omit-frame-pointer" slx \
 	EXTRACFLAGS="$EXTRACFLAGS" \
@@ -146,4 +141,3 @@ rm -rf %{buildroot}
 %{_includedir}/imap
 %{_libdir}/lib%{soname}.a
 %{_libdir}/lib%{soname}.so
-
