@@ -1,4 +1,4 @@
-%define fversion 2007b
+%define fversion 2007d
 %define soname c-client
 
 %define major 0
@@ -7,7 +7,7 @@
 
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
-Version:	2007b
+Version:	2007d
 Release:	%mkrel 1
 License:	Apache License
 Group:		System/Servers
