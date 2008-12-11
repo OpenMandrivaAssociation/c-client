@@ -8,7 +8,7 @@
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
 Version:	2007d
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	Apache License
 Group:		System/Servers
 URL:		http://www.washington.edu/imap/
@@ -116,6 +116,7 @@ install -d %{buildroot}%{_includedir}/imap
 # install headers
 install -m0644 c-client/*.h %{buildroot}%{_includedir}/imap/
 install -m0644 src/osdep/tops-20/shortsym.h %{buildroot}%{_includedir}/imap/
+install -m0644 src/osdep/tops-20/linkage.c %{buildroot}%{_includedir}/imap/
 
 install -m0755 lib%{soname}.so.%{major} %{buildroot}%{_libdir}/
 ln -snf lib%{soname}.so.%{major} %{buildroot}%{_libdir}/lib%{soname}.so
