@@ -1,3 +1,5 @@
+%define _default_patch_fuzz 2
+
 %define fversion 2007d
 %define soname c-client
 
