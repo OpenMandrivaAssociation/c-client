@@ -10,7 +10,7 @@
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
 Version:	2007d
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	Apache License
 Group:		System/Servers
 URL:		http://www.washington.edu/imap/
@@ -88,6 +88,9 @@ install -m 0644 %{SOURCE7} src/osdep/unix/flock.c
 
 %build
 %serverbuild
+
+# voodoo magic (pixel..., this has to work, not only as in a %%configure macro...)
+export EXTRACFLAGS="`rpm --eval %%configure|grep LDFLAGS|cut -d\\" -f2|sed -e 's/\$LDFLAGS //'`"
 
 touch ip6
 EXTRACFLAGS="$EXTRACFLAGS -DDISABLE_POP_PROXY=1 -DIGNORE_LOCK_EACCES_ERRORS=1 -I%{_includedir}/openssl"
