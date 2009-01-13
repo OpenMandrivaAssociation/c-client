@@ -1,6 +1,10 @@
-%define _default_patch_fuzz 2
+%define _disable_ld_no_undefined 1
 
-%define fversion 2007d
+%if %mdkversion < 200900
+%define ldflags %{nil}
+%endif
+
+%define fversion 2007e
 %define soname c-client
 
 %define major 0
@@ -9,12 +13,12 @@
 
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
-Version:	2007d
-Release:	%mkrel 3
+Version:	2007e
+Release:	%mkrel 1
 License:	Apache License
 Group:		System/Servers
 URL:		http://www.washington.edu/imap/
-Source:		ftp://ftp.cac.washington.edu/mail/imap-%{fversion}.tar.Z
+Source:		ftp://ftp.cac.washington.edu/mail/imap-%{fversion}.tar.gz
 Source7:	flock.c
 Source8:	Makefile.imap
 Patch0: 	imap-2002e-ssl.patch
@@ -73,14 +77,14 @@ This package contains development files for the c-client library.
 %patch0 -p0 -b .ssl
 %patch1 -p0 -b .linux
 %patch3 -p1 -b .mbox
-%patch4 -p1 -b .redhat
+%patch4 -p0 -b .redhat
 %patch5 -p0 -b .flock
 install -m 0644 %{SOURCE7} src/osdep/unix/flock.c
 %patch9 -p1 -b .glibc
 
-%patch12 -p1 -b .overflow
+%patch12 -p0 -b .overflow
 %patch17 -p0 -b .lock-warning
-%patch21 -p1 -b .shared
+%patch21 -p0 -b .shared
 %patch22 -p1 -b .authmd5
 %patch23 -p1 -b .annotate
 %patch24 -p1 -b .hash_reset
@@ -89,13 +93,11 @@ install -m 0644 %{SOURCE7} src/osdep/unix/flock.c
 %build
 %serverbuild
 
-# voodoo magic (pixel..., this has to work, not only as in a %%configure macro...)
-export EXTRACFLAGS="`rpm --eval %%configure|grep LDFLAGS|cut -d\\" -f2|sed -e 's/\$LDFLAGS //'`"
-
 touch ip6
-EXTRACFLAGS="$EXTRACFLAGS -DDISABLE_POP_PROXY=1 -DIGNORE_LOCK_EACCES_ERRORS=1 -I%{_includedir}/openssl"
-EXTRALDFLAGS="$EXTRALDFLAGS -L%{_libdir}"
-make RPM_OPT_FLAGS="$RPM_OPT_FLAGS -D_REENTRANT -DDIC -fPIC -fno-omit-frame-pointer" slx \
+export EXTRACFLAGS="$EXTRACFLAGS $CFLAGS -DDISABLE_POP_PROXY=1 -DIGNORE_LOCK_EACCES_ERRORS=1 -I%{_includedir}/openssl -D_GNU_SOURCE"
+export EXTRALDFLAGS="$EXTRALDFLAGS -L%{_libdir} %{ldflags}"
+
+make RPM_OPT_FLAGS="$CFLAGS -D_REENTRANT -DDIC -fPIC -fno-omit-frame-pointer -D_GNU_SOURCE" slx \
 	EXTRACFLAGS="$EXTRACFLAGS" \
 	EXTRALDFLAGS="$EXTRALDFLAGS" \
 	SSLDIR=%{_libdir}/ssl \
@@ -105,7 +107,7 @@ make RPM_OPT_FLAGS="$RPM_OPT_FLAGS -D_REENTRANT -DDIC -fPIC -fno-omit-frame-poin
 	SSLTYPE=unix \
 	SHLIBBASE=%{soname} \
 	SHLIBNAME=lib%{soname}.so.%{major} \
-	BASECFLAGS="$RPM_OPT_FLAGS -D_REENTRANT -DDIC -fPIC -fno-omit-frame-pointer" \
+	BASECFLAGS="$CFLAGS -D_REENTRANT -DDIC -fPIC -fno-omit-frame-pointer -D_GNU_SOURCE" \
 	IP=6
 
 mv -f c-client/c-client.a %{soname}.a
