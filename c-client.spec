@@ -14,7 +14,7 @@
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
 Version:	2007e
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	Apache License
 Group:		System/Servers
 URL:		http://www.washington.edu/imap/
