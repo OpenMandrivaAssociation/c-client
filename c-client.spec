@@ -4,7 +4,7 @@
 %define ldflags %{nil}
 %endif
 
-%define fversion 2007e
+%define fversion 2007f
 %define soname c-client
 
 %define major 0
@@ -13,8 +13,8 @@
 
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
-Version:	2007e
-Release:	%mkrel 6
+Version:	2007f
+Release:	%mkrel 1
 License:	Apache License
 Group:		System/Servers
 URL:		http://www.washington.edu/imap/
