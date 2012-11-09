@@ -1,0 +1,11 @@
+--- src/osdep/unix/env_unix.c	2007-05-10 16:38:51.000000000 +0200
++++ src/osdep/unix/env_unix.c.oden	2007-05-10 16:40:08.000000000 +0200
+@@ -218,7 +218,7 @@
+  * The mlock tool exists for a reason.  Use it.
+  */
+ 				/* disable warning if can't make .lock file */
+-static short disableLockWarning = NIL;
++static short disableLockWarning = 1;
+ 
+ /* UNIX Namespaces */
+ 

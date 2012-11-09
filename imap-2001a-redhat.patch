@@ -1,0 +1,11 @@
+--- Makefile	2009-01-14 00:00:49.000000000 +0100
++++ Makefile.oden	2009-01-14 00:01:00.000000000 +0100
+@@ -252,7 +252,7 @@
+ #	British.  As of 2005, the Julian calendar and the Gregorian calendar
+ #	diverge by 15 days.
+ 
+-EXTRACFLAGS=
++EXTRACFLAGS= -DDISABLE_POP_PROXY=1
+ 
+ 
+ # Extra linker flags (additional/alternative libraries, etc.)

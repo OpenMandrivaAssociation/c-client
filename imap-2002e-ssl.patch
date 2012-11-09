@@ -1,0 +1,18 @@
+--- src/osdep/unix/Makefile	2003-07-15 03:24:24.000000000 +0200
++++ src/osdep/unix/Makefile.oden	2004-06-14 18:12:44.610423744 +0200
+@@ -28,11 +28,11 @@
+ 
+ # Extended flags needed for SSL.  You may need to modify.
+ 
+-SSLDIR=/usr/local/ssl
+-SSLCERTS=$(SSLDIR)/certs
++SSLDIR=/usr/lib/ssl
++SSLCERTS=/etc/ssl/imap
+ SSLKEYS=$(SSLCERTS)
+-SSLINCLUDE=$(SSLDIR)/include
+-SSLLIB=$(SSLDIR)/lib
++SSLINCLUDE=/usr/include
++SSLLIB=/usr/lib
+ 
+ SSLCRYPTO=-lcrypto
+ 

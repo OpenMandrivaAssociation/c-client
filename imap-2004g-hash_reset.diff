@@ -1,0 +1,45 @@
+diff -Naurp imap-2007e/src/c-client/mail.c imap-2007e.oden/src/c-client/mail.c
+--- imap-2007e/src/c-client/mail.c	2009-01-14 00:07:55.000000000 +0100
++++ imap-2007e.oden/src/c-client/mail.c	2009-01-14 00:08:07.000000000 +0100
+@@ -5023,7 +5023,7 @@ THREADNODE *mail_thread_references (MAIL
+     root = tc[0];		/* establish new root */
+   }
+ 			/* Step 5A */
+-  hash_reset (ht);		/* discard containers, reset ht */
++  hash_reset2 (ht);		/* discard containers, reset ht */
+ 			/* Step 5B */
+   for (cur = root; cur; cur = cur->branch)
+     if ((t = (nxt = (cur->sc ? cur : cur->next))->sc->subject) && *t) {
+diff -Naurp imap-2007e/src/c-client/misc.c imap-2007e.oden/src/c-client/misc.c
+--- imap-2007e/src/c-client/misc.c	2008-06-04 20:18:34.000000000 +0200
++++ imap-2007e.oden/src/c-client/misc.c	2009-01-14 00:08:07.000000000 +0100
+@@ -300,7 +300,7 @@ HASHTAB *hash_create (size_t size)
+ void hash_destroy (HASHTAB **hashtab)
+ {
+   if (*hashtab) {
+-    hash_reset (*hashtab);	/* reset hash table */
++    hash_reset2 (*hashtab);	/* reset hash table */
+     fs_give ((void **) hashtab);
+   }
+ }
+@@ -310,7 +310,7 @@ void hash_destroy (HASHTAB **hashtab)
+  * Accepts: hash table
+  */
+ 
+-void hash_reset (HASHTAB *hashtab)
++void hash_reset2 (HASHTAB *hashtab)
+ {
+   size_t i;
+   HASHENT *ent,*nxt;
+diff -Naurp imap-2007e/src/c-client/misc.h imap-2007e.oden/src/c-client/misc.h
+--- imap-2007e/src/c-client/misc.h	2008-06-04 20:18:34.000000000 +0200
++++ imap-2007e.oden/src/c-client/misc.h	2009-01-14 00:08:07.000000000 +0100
+@@ -98,7 +98,7 @@ long search (unsigned char *base,long ba
+ long ssearch (unsigned char *base,long basec,unsigned char *pat,long patc);
+ HASHTAB *hash_create (size_t size);
+ void hash_destroy (HASHTAB **hashtab);
+-void hash_reset (HASHTAB *hashtab);
++void hash_reset2 (HASHTAB *hashtab);
+ unsigned long hash_index (HASHTAB *hashtab,char *key);
+ void **hash_lookup (HASHTAB *hashtab,char *key);
+ HASHENT *hash_add (HASHTAB *hashtab,char *key,void *data,long extra);
