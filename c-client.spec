@@ -40,7 +40,7 @@ The c-client library is a common API for accessing mailboxes developed at
 the University of Washington. It is used mainly by php in Mandriva Linux.
 
 %package -n	%{libname}
-Summary:	C-client mail access routines for IMAP and POP protocols
+Summary:	Mail access routines for IMAP and POP protocols
 Group:		System/Libraries
 Provides:	c-client = %{version}-%{release}
 
