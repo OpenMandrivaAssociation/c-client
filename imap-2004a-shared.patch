@@ -29,7 +29,7 @@
 -.c.o:
 -	`$(CAT) CCTYPE` -c `$(CAT) CFLAGS` $*.c
 +$(SHLIBNAME):	$(SOFILES)
-+	gcc -shared -Wl,-soname,$(SHLIBNAME) -o $(SHLIBNAME) $(SOFILES) `cat LDFLAGS`
++	$(CC) -shared -Wl,-soname,$(SHLIBNAME) -o $(SHLIBNAME) $(SOFILES) `cat LDFLAGS`
 +	ln -s $(SHLIBNAME) lib$(SHLIBBASE).so
 +
 +.c.so:	osdep.h

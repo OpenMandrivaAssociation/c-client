@@ -90,6 +90,7 @@ export EXTRALDFLAGS="$EXTRALDFLAGS -L%{_libdir} %{ldflags}"
 make RPM_OPT_FLAGS="$CFLAGS -D_REENTRANT -DDIC -fPIC -fno-omit-frame-pointer -D_GNU_SOURCE" slx \
 	EXTRACFLAGS="$EXTRACFLAGS" \
 	EXTRALDFLAGS="$EXTRALDFLAGS" \
+	CC=%{__cc} \
 	SSLDIR=%{_libdir}/ssl \
 	SSLINCLUDE=%{_includedir}/openssl \
 	SSLLIB=%{_libdir} \
