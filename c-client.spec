@@ -10,7 +10,7 @@
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
 Version:	2007f
-Release:	11
+Release:	12
 License:	Apache License
 Group:		System/Servers
 Url:		http://www.washington.edu/imap/
@@ -33,6 +33,7 @@ Patch23:	imap-2006c1-annotate.diff
 # (oe) http://www.gadgetwiz.com/software/hash_reset.html
 Patch24:	imap-2004g-hash_reset.diff
 Patch25:	imap-yes.diff
+Patch26:	https://src.fedoraproject.org/rpms/uw-imap/raw/master/f/1006_openssl1.1_autoverify.patch
 BuildRequires:	pkgconfig(openssl)
 
 %description
@@ -79,6 +80,7 @@ install -m 0644 %{SOURCE7} src/osdep/unix/flock.c
 %patch23 -p1 -b .annotate
 %patch24 -p1 -b .hash_reset
 %patch25 -p0 -b .yes
+%patch26 -p1 -b .ossl11~
 
 %build
 %serverbuild
