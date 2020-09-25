@@ -10,7 +10,7 @@
 Summary:	UW-IMAP C-CLIENT library
 Name:		c-client
 Version:	2007f
-Release:	15
+Release:	16
 License:	Apache License
 Group:		System/Servers
 Url:		http://www.washington.edu/imap/
@@ -126,4 +126,3 @@ ln -snf lib%{soname}.so.%{major} %{buildroot}%{_libdir}/lib%{soname}.so
 %files -n %{devname}
 %{_includedir}/imap
 %{_libdir}/lib%{soname}.so
-
