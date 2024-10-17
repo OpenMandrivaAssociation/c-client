@@ -13,7 +13,7 @@ Version:	2007f
 Release:	17
 License:	Apache License
 Group:		System/Servers
-Url:		http://www.washington.edu/imap/
+Url:		https://www.washington.edu/imap/
 Source0:	ftp://ftp.cac.washington.edu/mail/imap-%{fversion}.tar.gz
 Source7:	flock.c
 Source8:	Makefile.imap
