@@ -34,6 +34,7 @@ Patch23:	imap-2006c1-annotate.diff
 Patch24:	imap-2004g-hash_reset.diff
 Patch25:	imap-yes.diff
 Patch26:	https://src.fedoraproject.org/rpms/uw-imap/raw/master/f/1006_openssl1.1_autoverify.patch
+BuildRequires:	make
 BuildRequires:	pkgconfig(openssl)
 
 %description
